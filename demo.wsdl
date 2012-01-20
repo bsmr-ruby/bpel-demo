@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.innoq.com/OOP-demo/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="OOP-demo" targetNamespace="http://www.innoq.com/OOP-demo/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.innoq.com/OOP-demo/">
+      <xsd:element name="placeOrder">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="products">
+          		<xsd:complexType>
+          			<xsd:sequence>
+          				<xsd:element name="product" type="tns:Product"
+          					minOccurs="1" maxOccurs="unbounded">
+          				</xsd:element>
+          			</xsd:sequence>
+          		</xsd:complexType>
+          	</xsd:element>
+          	<xsd:element name="paymentType">
+          		<xsd:simpleType>
+          			<xsd:restriction base="xsd:string">
+          				<xsd:enumeration value="CREDIT_CARD"></xsd:enumeration>
+          				<xsd:enumeration value="DEBIT_BANK_ACCOUNT"></xsd:enumeration>
+          			</xsd:restriction>
+          		</xsd:simpleType></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="placeOrderResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="orderId" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getPriceForProduct">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="productId" type="xsd:string"></xsd:element>
+      			<xsd:element name="amount" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getPriceForProductResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="priceInEUR" type="xsd:decimal"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="Product">
+      	<xsd:sequence>
+      		<xsd:element name="id" type="xsd:string"></xsd:element>
+      		<xsd:element name="name" type="xsd:string"></xsd:element>
+      		<xsd:element name="amount" type="xsd:string"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="placeOrderRequest">
+    <wsdl:part element="tns:placeOrder" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="placeOrderResponse">
+    <wsdl:part element="tns:placeOrderResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getPriceForProductRequest">
+  	<wsdl:part name="parameters" element="tns:getPriceForProduct"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPriceForProductResponse">
+  	<wsdl:part name="parameters" element="tns:getPriceForProductResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="OrderProcess">
+    <wsdl:operation name="placeOrder">
+      <wsdl:input message="tns:placeOrderRequest"/>
+      <wsdl:output message="tns:placeOrderResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ProductService">
+  	<wsdl:operation name="getPriceForProduct">
+  		<wsdl:input message="tns:getPriceForProductRequest"></wsdl:input>
+  		<wsdl:output message="tns:getPriceForProductResponse"></wsdl:output>
+  	</wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OrderProcessSOAP" type="tns:OrderProcess">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="placeOrder">
+      <soap:operation soapAction="http://www.innoq.com/OOP-demo/placeOrder"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ProductServiceSOAP" type="tns:ProductService">
+
+  	<soap:binding style="document"
+  		transport="http://schemas.xmlsoap.org/soap/http" />
+  	<wsdl:operation name="getPriceForProduct">
+
+  		<soap:operation
+  			soapAction="http://www.innoq.com/OOP-demo/getPriceForProduct" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OrderProcess">
+    <wsdl:port binding="tns:OrderProcessSOAP" name="OrderProcessSOAP">
+      <soap:address location="http://localhost:8080/active-bpel/services/OrderProcess"/>
+    </wsdl:port>
+  </wsdl:service>
+  <wsdl:service name="ProductService">
+  	<wsdl:port name="ProductServiceSOAP" binding="tns:ProductServiceSOAP">
+  		<soap:address location="http://www.example.org/" />
+  	</wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
