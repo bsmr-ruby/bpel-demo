@@ -1,9 +1,16 @@
 # Ruby BPEL Demo
 
 ### Installation
-0. Install Ruby or [JRuby](http://jruby.org/)
-1. Clone (`git clone git@github.com:tillsc/bpel-demo.git`) or [download](https://github.com/tillsc/bpel-demo/zipball/master) this repository
-2. Install dependencies
+1. Install Ruby or [JRuby](http://jruby.org/)
+2. Install the [bundler](http://gembundler.com/) dependency management gem:
+
+        gem install bundler
+
+    or
+
+        sudo gem install bundler
+2. Clone (`git clone git@github.com:tillsc/bpel-demo.git`) or [download](https://github.com/tillsc/bpel-demo/zipball/master) this repository
+3. Install dependencies
 
         bundle install
  
