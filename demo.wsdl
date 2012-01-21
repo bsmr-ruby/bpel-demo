@@ -44,7 +44,8 @@
       	<xsd:complexType>
       		<xsd:sequence>
 
-      			<xsd:element name="priceInEUR" type="xsd:decimal"></xsd:element>
+      			<xsd:element name="priceInEUR" type="xsd:decimal"></xsd:element>
+
       		</xsd:sequence>
       	</xsd:complexType>
       </xsd:element>
@@ -119,7 +120,7 @@
   </wsdl:service>
   <wsdl:service name="ProductService">
   	<wsdl:port name="ProductServiceSOAP" binding="tns:ProductServiceSOAP">
-  		<soap:address location="http://www.example.org/" />
+  		<soap:address location="http://localhost:1234/" />
   	</wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
