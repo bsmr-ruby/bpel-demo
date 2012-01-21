@@ -31,5 +31,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  rack
   savon
   soap4r
