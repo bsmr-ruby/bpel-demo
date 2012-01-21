@@ -8,5 +8,11 @@
  
 ### Running the demo
 1. Start the BPEL server
-2. Do a request
+2. Start the 'ProductService' service
+    bundle execute ruby server.rb
+3. Do a request
     bundle execute ruby client.rb
+
+### Testing the 'ProductService' service
+There is a very simple HTTP call to the 'ProductService'
+   bundle execute ruby test_server.rb
