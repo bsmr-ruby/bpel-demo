@@ -9,7 +9,7 @@
  
 ### Running the demo
 1. Start the BPEL server
-2. Start the 'ProductService' service
+2. Start the 'ProductService'
 
         bundle execute ruby server.rb
 
@@ -18,6 +18,6 @@
         bundle execute ruby client.rb
 
 ### Testing the 'ProductService' service
-There is a very simple HTTP call to the 'ProductService'
+There is a ruby script doing a very simple HTTP call to the 'ProductService'
 
     bundle execute ruby test_server.rb
