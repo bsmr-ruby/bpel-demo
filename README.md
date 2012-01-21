@@ -18,13 +18,13 @@
 1. Start the BPEL server
 2. Start the 'ProductService'
 
-        bundle execute ruby server.rb
+        bundle exec ruby server.rb
 
 3. Do a request
 
-        bundle execute ruby client.rb
+        bundle exec ruby client.rb
 
 ### Testing the 'ProductService' service
 There is a ruby script doing a very simple HTTP call to the 'ProductService'
 
-    bundle execute ruby test_server.rb
+    bundle exec ruby test_server.rb
